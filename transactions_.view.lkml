@@ -50,7 +50,7 @@ view: transactions_ {
   dimension: operation {
     label: "Mode of Transaction"
     type: string
-    sql: ${TABLE}.operation ;
+    sql: ${TABLE}.operation ;;
   }
 
   dimension: trans_id {
