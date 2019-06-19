@@ -38,7 +38,18 @@ explore: card {
   }
 }
 
-explore: client {}
+explore: client {
+  join: disp {
+    type: left_outer
+    sql_on: ${client.client_id} = ${disp.client_id} ;;
+    relationship: many_to_one
+  }
+  join: district {
+    type: left_outer
+    sql_on: ${client.district_id} = ${district.district_code} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: disp {
   join: account {
