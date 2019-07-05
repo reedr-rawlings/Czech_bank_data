@@ -17,9 +17,9 @@ explore: account {
     relationship: many_to_one
   }
 
-  join: transactions_ {
+  join: transactionss {
     type: left_outer
-    sql_on: ${account.account_id} = ${transactions_.account_id} ;;
+    sql_on: ${account.account_id} = ${transactionss.account_id} ;;
     relationship: many_to_one
   }
 
@@ -89,10 +89,10 @@ explore: orders {
   }
 }
 
-explore: transactions_ {
+explore: transactionss {
   join: account {
     type: left_outer
-    sql_on: ${transactions_.account_id} = ${account.account_id} ;;
+    sql_on: ${transactionss.account_id} = ${account.account_id} ;;
     relationship: many_to_one
   }
 }

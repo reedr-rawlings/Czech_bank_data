@@ -1,5 +1,5 @@
-view: transactions_ {
-  sql_table_name: czech_financial_data.transactions_ ;;
+view: transactionss {
+  sql_table_name: czech_financial_data.transactionss ;;
 
   dimension: account {
     type: number
