@@ -57,13 +57,14 @@ view: transactionss {
         WHEN ${TABLE}.k_symbol = "SIPO" THEN "household"
         WHEN ${TABLE}.k_symbol = "DUCHOD" THEN "old-age pension"
         WHEN ${TABLE}.k_symbol = "UVER" THEN "loan payment"
+        WHEN ${TABLE}.k_symbol IS NULL THEN NUll
         ELSE "check strings"
         END;;
   }
 
-  dimension: ksymbol_base {
-    sql: ${TABLE}.k_symbol ;;
-  }
+#   dimension: ksymbol_base {
+#     sql: ${TABLE}.k_symbol ;;
+#   }
 
   dimension: operation {
     #Translated from Czechian -- "VYBER KARTOU" credit card withdrawal "VKLAD" credit in cash "PREVOD Z UCTU" collection from another bank "VYBER" withdrawal in cash "PREVOD NA UCET" remittance to another bank
@@ -91,9 +92,9 @@ view: transactionss {
     type: string
     sql:
       CASE
-        WHEN ${TABLE}.type = "PRIJEM" THEN "credit"
-        WHEN ${TABLE}.type = "VYDAJ" THEN "withdrawal"
-        ELSE "VYBER"
+        WHEN ${TABLE}.type = "PRIJEM" THEN "Credited"
+        WHEN ${TABLE}.type = "VYDAJ" THEN "Debited"
+        WHEN ${TABLE}.type = "VYBER" THEN "Withdrawal in cash"
         END;;
   }
 
