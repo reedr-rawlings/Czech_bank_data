@@ -43,14 +43,41 @@ view: transactionss {
   }
 
   dimension: k_symbol {
+    #"POJISTNE" insurance payment "SLUZBY" payment for statement
+    #"UROK" interest credited "SANKC. UROK" sanction interest if negative balance
+    #"SIPO" household "DUCHOD" old-age pension "UVER" loan payment
+    description: "Characterization of the transaction"
     type: string
+    sql:
+      CASE
+        WHEN ${TABLE}.k_symbol = "POJISTNE" THEN "insurance payment"
+        WHEN ${TABLE}.k_symbol = "SLUZBY" THEN "payment for statement"
+        WHEN ${TABLE}.k_symbol = "UROK" THEN "interest credit"
+        WHEN ${TABLE}.k_symbol = "SANKC. UROK" THEN "sanction interest if negative balance"
+        WHEN ${TABLE}.k_symbol = "SIPO" THEN "household"
+        WHEN ${TABLE}.k_symbol = "DUCHOD" THEN "old-age pension"
+        WHEN ${TABLE}.k_symbol = "UVER" THEN "loan payment"
+        ELSE "check strings"
+        END;;
+  }
+
+  dimension: ksymbol_base {
     sql: ${TABLE}.k_symbol ;;
   }
 
   dimension: operation {
+    #Translated from Czechian -- "VYBER KARTOU" credit card withdrawal "VKLAD" credit in cash "PREVOD Z UCTU" collection from another bank "VYBER" withdrawal in cash "PREVOD NA UCET" remittance to another bank
     label: "Mode of Transaction"
     type: string
-    sql: ${TABLE}.operation ;;
+    sql:
+      CASE
+        WHEN ${TABLE}.operation = "VYBER KARTOU" THEN "credit card withdrawl"
+        WHEN ${TABLE}.operation = "VKLAD" THEN "credit in cash"
+        WHEN ${TABLE}.operation = "PREVOD Z UCTU" THEN "collection from another bank"
+        WHEN ${TABLE}.operation = "VYBER" THEN "withdrawal in cash"
+        WHEN ${TABLE}.operation = "PREVOD NA UCET" THEN "remittance to another bank"
+        ELSE "check strings"
+        END;;
   }
 
   dimension: trans_id {
@@ -58,10 +85,21 @@ view: transactionss {
     sql: ${TABLE}.trans_id ;;
   }
 
-  dimension: type {
+  dimension: transaction_type {
+    description: "credit or withdrawal"
+    # +/- transaction: "PRIJEM" stands for credit "VYDAJ" stands for withdrawal
     type: string
-    sql: ${TABLE}.type ;;
+    sql:
+      CASE
+        WHEN ${TABLE}.type = "PRIJEM" THEN "credit"
+        WHEN ${TABLE}.type = "VYDAJ" THEN "withdrawal"
+        ELSE "VYBER"
+        END;;
   }
+
+#   dimension: base_type {
+#     sql: ${TABLE}.type ;;
+#   }
 
   measure: count {
     type: count
