@@ -5,10 +5,11 @@ include: "*.view"
 
 datagroup: czech_financial_data_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "24 hour"
+  max_cache_age: "48 hour"
 }
 
 persist_with: czech_financial_data_default_datagroup
+
 
 explore: account {
   join: orders {

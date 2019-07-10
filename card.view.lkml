@@ -8,6 +8,7 @@ view: card {
   }
 
   dimension: disposition_id {
+    description: "Disposition to an account"
     type: number
     sql: ${TABLE}.disposition_id ;;
   }
@@ -18,6 +19,7 @@ view: card {
   }
 
   dimension_group: issued_yymmdd {
+    description: "Time card was issued"
     type: time
     timeframes: [
       raw,
@@ -33,6 +35,7 @@ view: card {
   }
 
   dimension: type_of_card {
+    description: "Type of card: Junior, Gold, Classic"
     type: string
     sql: ${TABLE}.type_of_card ;;
   }

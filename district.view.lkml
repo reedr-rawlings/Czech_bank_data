@@ -2,16 +2,19 @@ view: district {
   sql_table_name: czech_financial_data.district ;;
 
   dimension: average_salary {
+    description: "Average customer salary 34 CZK to $1"
     type: number
     sql: ${TABLE}.Average_Salary ;;
   }
 
   dimension: crimes_95 {
+    description: "# of crimes committed in 95"
     type: string
     sql: ${TABLE}.Crimes_95 ;;
   }
 
   dimension: crimes_96 {
+    description: "# of crimes committed in 96"
     type: number
     sql: ${TABLE}.Crimes_96 ;;
   }

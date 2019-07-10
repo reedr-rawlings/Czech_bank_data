@@ -24,6 +24,7 @@ view: orders {
   }
 
   dimension: bank_to {
+    description: "bank of the recipient: each bank has unique two-letter code"
     type: string
     sql: ${TABLE}.bank_to ;;
   }

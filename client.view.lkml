@@ -8,6 +8,7 @@ view: client {
   }
 
   dimension: age {
+    description: "Age of customer"
     type: number
     sql: ${TABLE}.Age ;;
   }
@@ -18,16 +19,19 @@ view: client {
   }
 
   dimension: birthday {
+    description: "Year of birth"
     type: string
     sql: ${TABLE}.Birthday ;;
   }
 
   dimension: district_id {
+    description: "District address for client"
     type: number
     sql: ${TABLE}.district_id ;;
   }
 
   dimension: sex {
+    description: "Female or Male"
     type: string
     sql: ${TABLE}.Sex ;;
   }

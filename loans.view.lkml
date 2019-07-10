@@ -34,6 +34,7 @@ view: loans {
   }
 
   dimension: duration_year {
+    description: "Duration of loan"
     type: number
     sql: ${TABLE}.duration_year ;;
   }
@@ -44,6 +45,11 @@ view: loans {
   }
 
   dimension: status {
+    description: "status of paying off the loan:
+    'A' stands for contract finished, no problems,
+    'B' stands for contract finished, loan not payed,
+    'C' stands for running contract, OK so far,
+    'D' stands for running contract, client in debt"
     type: string
     sql: ${TABLE}.status ;;
   }

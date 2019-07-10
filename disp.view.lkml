@@ -19,7 +19,8 @@ view: disp {
     sql: ${TABLE}.client_id ;;
   }
 
-  dimension: type {
+  dimension: disposition_type {
+    description: "type of disposition (owner/user): only owner can issue permanent orders and ask for a loan"
     type: string
     sql: ${TABLE}.type ;;
   }
