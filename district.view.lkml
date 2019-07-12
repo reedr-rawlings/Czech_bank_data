@@ -1,7 +1,9 @@
 view: district {
   sql_table_name: czech_financial_data.district ;;
 
-  dimension: average_salary {
+  # Possible Map - https://github.com/deldersveld/topojson/blob/master/countries/czech-republic/czech-republic-regions.json
+
+  dimension: salary {
     description: "Average customer salary 34 CZK to $1"
     type: number
     sql: ${TABLE}.Average_Salary ;;
@@ -25,6 +27,7 @@ view: district {
   }
 
   dimension: district_name {
+    map_layer_name: czech
     type: string
     sql: ${TABLE}.District_Name ;;
   }
@@ -87,5 +90,11 @@ view: district {
   measure: count {
     type: count
     drill_fields: [district_name]
+  }
+
+  measure: average_salary {
+    value_format_name: decimal_2
+    type: average
+    sql: ${salary} ;;
   }
 }

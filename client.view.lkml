@@ -13,6 +13,13 @@ view: client {
     sql: ${TABLE}.Age ;;
   }
 
+  dimension: age_group {
+    type: tier
+    tiers: [20, 30, 40, 50, 60, 70, 80]
+    style: integer # the default value, could be excluded
+    sql: ${age} ;;
+  }
+
   dimension: birth_number {
     type: number
     sql: ${TABLE}.birth_number ;;

@@ -10,7 +10,6 @@ datagroup: czech_financial_data_default_datagroup {
 
 persist_with: czech_financial_data_default_datagroup
 
-
 explore: account {
   join: orders {
     type: left_outer
@@ -72,7 +71,25 @@ explore: disp {
   }
 }
 
-explore: district {}
+explore: district {
+  join: client {
+    type: left_outer
+    sql_on: ${district.district_code} = ${client.district_id};;
+    relationship: many_to_one
+  }
+
+  join: account {
+    type: left_outer
+    sql_on: ${account.district_id} = ${district.district_code} ;;
+    relationship: many_to_one
+  }
+
+  join: orders {
+    type: left_outer
+    sql_on: ${account.account_id} = ${orders.account_id} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: loans {
   join: account {
@@ -96,4 +113,10 @@ explore: transactionss {
     sql_on: ${transactionss.account_id} = ${account.account_id} ;;
     relationship: many_to_one
   }
+}
+
+map_layer: czech {
+  format: topojson
+  file: "gadm36_CZE_2.json"
+
 }
