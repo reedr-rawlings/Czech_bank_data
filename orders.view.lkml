@@ -38,4 +38,10 @@ view: orders {
     type: count
     drill_fields: [order_id, account.account_id]
   }
+
+  measure: total_banks {
+    description: "Total banks in Area"
+    type: count_distinct
+    sql: ${bank_to} ;;
+  }
 }

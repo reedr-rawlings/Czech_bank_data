@@ -22,6 +22,7 @@ view: district {
   }
 
   dimension: district_code {
+    map_layer_name: czech
     type: number
     sql: ${TABLE}.District_Code ;;
   }
