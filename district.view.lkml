@@ -74,6 +74,7 @@ view: district {
   }
 
   dimension: region {
+    map_layer_name: czech
     type: string
     sql: ${TABLE}.Region ;;
   }
