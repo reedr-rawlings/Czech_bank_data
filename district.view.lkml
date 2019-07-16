@@ -33,6 +33,18 @@ view: district {
     sql: ${TABLE}.District_Name ;;
   }
 
+  dimension: just_prague {
+    map_layer_name: prague
+    type: string
+    sql: ${TABLE}.District_Name ;;
+  }
+
+  dimension: pragueallover {
+    map_layer_name: tryingprague
+    type: string
+    sql: ${TABLE}.District_Name ;;
+  }
+
   dimension: entrepeneurs_per_1000 {
     type: number
     sql: ${TABLE}.Entrepeneurs_Per_1000 ;;

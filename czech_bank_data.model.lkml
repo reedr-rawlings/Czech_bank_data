@@ -118,5 +118,14 @@ explore: transactionss {
 map_layer: czech {
   format: topojson
   file: "gadm36_CZE_2.json"
+}
 
+map_layer: prague {
+  format: topojson
+  file: "praguemap.topojson"
+}
+
+map_layer: tryingprague {
+  format: topojson
+  file: "gadm36_CZE_2copy.json"
 }
