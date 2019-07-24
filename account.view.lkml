@@ -20,6 +20,11 @@ view: account {
       quarter,
       year
     ]
+    sql: ${date_base} ;;
+  }
+
+  dimension: date_base {
+    hidden: yes
     sql: PARSE_DATE('%y%m%d', CAST(${TABLE}.date AS STRING)) ;;
   }
 
