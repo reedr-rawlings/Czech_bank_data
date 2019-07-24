@@ -8,7 +8,7 @@ view: account {
     sql: ${TABLE}.account_id ;;
   }
 
-  dimension_group: date {
+  dimension_group: account_creation {
     description: "Date of Created Account"
     type: time
     timeframes: [
