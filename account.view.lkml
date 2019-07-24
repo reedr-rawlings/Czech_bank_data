@@ -8,9 +8,18 @@ view: account {
     sql: ${TABLE}.account_id ;;
   }
 
-  dimension: date {
+  dimension_group: date {
     description: "Date of Created Account"
-    type: number
+    type: time
+    timeframes: [
+      date,
+      raw,
+      week,
+      month,
+      fiscal_quarter,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.date ;;
   }
 
