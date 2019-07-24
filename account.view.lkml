@@ -20,7 +20,7 @@ view: account {
       quarter,
       year
     ]
-    sql: ${TABLE}.date ;;
+    sql: PARSE_DATE('%y%m%d', CAST(${TABLE}.date AS STRING)) ;;
   }
 
   dimension: district_id {
