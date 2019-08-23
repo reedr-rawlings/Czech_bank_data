@@ -115,6 +115,8 @@ explore: transactionss {
   }
 }
 
+
+
 map_layer: czech {
   format: topojson
   file: "gadm36_CZE_2.json"

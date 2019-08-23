@@ -41,6 +41,7 @@ view: account {
   }
 
   measure: count {
+    label: "Take this - Count"
     type: count
     drill_fields: [account_id, loans.count, orders.count, disp.count, transactions_.count]
   }
