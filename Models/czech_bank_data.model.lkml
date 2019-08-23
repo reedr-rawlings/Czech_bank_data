@@ -1,7 +1,8 @@
 connection: "lookerdata_publicdata_standard_sql"
 
 # include all the views
-include: "*.view"
+include: "/Views/*.view"
+
 
 datagroup: czech_financial_data_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -119,15 +120,15 @@ explore: transactionss {
 
 map_layer: czech {
   format: topojson
-  file: "gadm36_CZE_2.json"
+  file: "/maps/gadm36_CZE_2.json"
 }
 
 map_layer: prague {
   format: topojson
-  file: "praguemap.topojson"
+  file: "/maps/praguemap.topojson"
 }
 
 map_layer: tryingprague {
   format: topojson
-  file: "gadm36_CZE_2copy.json"
+  file: "/maps/gadm36_CZE_2copy.json"
 }
