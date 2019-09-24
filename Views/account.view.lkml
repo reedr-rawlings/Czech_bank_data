@@ -4,8 +4,8 @@ view: account {
   dimension: account_id {
     description: "Identification of account"
     primary_key: yes
-    type: number
-    sql: ${TABLE}.account_id ;;
+    type: string
+    sql: CAST(${TABLE}.account_id AS STRING) ;;
   }
 
   dimension_group: account_creation {
