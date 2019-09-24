@@ -3,15 +3,20 @@ connection: "lookerdata_publicdata_standard_sql"
 # include all the views
 include: "/Views/*.view"
 
+datagroup: new_trigger {
+  max_cache_age: "24 hours"
+  sql_trigger: SELECT max(*) FROM czech_financial_data.card ;;
+}
 
 datagroup: czech_financial_data_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "48 hour"
 }
 
-persist_with: czech_financial_data_default_datagroup
+
 
 explore: account {
+  persist_with: czech_financial_data_default_datagroup
   join: orders {
     type: left_outer
     sql_on: ${account.account_id} = ${orders.account_id} ;;
@@ -106,7 +111,14 @@ explore: orders {
     sql_on: ${orders.account_id} = ${account.account_id} ;;
     relationship: many_to_one
   }
+  join: orders_dt {
+    type: left_outer
+    sql_on: ${account.account_id} = ${orders_dt.account_dist_id} ;;
+    relationship: one_to_one
+  }
 }
+
+explore: orders_dt {}
 
 explore: transactionss {
   join: account {

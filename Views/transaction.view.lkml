@@ -29,6 +29,7 @@ view: transactionss {
 
   dimension_group: date {
     type: time
+#     datatype: date
     timeframes: [
       raw,
       date,
@@ -101,6 +102,11 @@ view: transactionss {
 #   dimension: base_type {
 #     sql: ${TABLE}.type ;;
 #   }
+
+  measure: total_balance {
+    type: sum
+    sql: ${balance} ;;
+  }
 
   measure: count {
     type: count
