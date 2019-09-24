@@ -2,14 +2,14 @@ view: transactionss {
   sql_table_name: czech_financial_data.transactionss ;;
 
   dimension: account {
-    type: number
-    sql: ${TABLE}.account ;;
+    type: string
+    sql: CAST(${TABLE}.account AS STRING) ;;
   }
 
   dimension: account_id {
-    type: number
+    type: string
     # hidden: yes
-    sql: ${TABLE}.account_id ;;
+    sql: CAST(${TABLE}.account_id AS STRING) ;;
   }
 
   dimension: amount {
@@ -39,7 +39,8 @@ view: transactionss {
       year
     ]
     convert_tz: no
-    sql: parse_date('%y%m%d',cast(${TABLE}.date as string));;
+    datatype: date
+    sql: PARSE_DATE('%y%m%d', CAST(${TABLE}.date AS STRING)) ;;
   }
 
   dimension: k_symbol {
