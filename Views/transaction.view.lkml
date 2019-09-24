@@ -108,7 +108,7 @@ view: transactionss {
   }
 
   measure: current_amount {
-    type: number
+    type: sum
     sql: ${amount} ;;
   }
 
