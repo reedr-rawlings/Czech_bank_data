@@ -107,6 +107,11 @@ view: transactionss {
     sql: ${balance} ;;
   }
 
+  measure: current_amount {
+    type: number
+    sql: ${amount} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [account.account_id]
