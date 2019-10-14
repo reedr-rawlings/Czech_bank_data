@@ -18,15 +18,16 @@ view: loans {
     sql: ${TABLE}.amount ;;
   }
 
-  dimension: contract_finished {
-    type: string
-    sql: ${TABLE}.Contract_Finished ;;
-  }
+#   dimension: contract_finished {
+#     type: string
+#     sql: ${TABLE}.Contract_Finished ;;
+#   }
 
-  dimension: contract_status {
-    type: string
-    sql: ${TABLE}.Contract_Status ;;
-  }
+# What do?
+#   dimension: contract_status {
+#     type: string
+#     sql: ${TABLE}.Contract_Status ;;
+#   }
 
   dimension: date {
     type: number
