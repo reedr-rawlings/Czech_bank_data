@@ -35,6 +35,7 @@ view: transactionss {
       date,
       week,
       month,
+      month_num,
       quarter,
       year
     ]

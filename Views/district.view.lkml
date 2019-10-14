@@ -1,6 +1,10 @@
 view: district {
   sql_table_name: czech_financial_data.district ;;
 
+  # fields for dynamic filtering on dashboard
+
+
+
   # Possible Map - https://github.com/deldersveld/topojson/blob/master/countries/czech-republic/czech-republic-regions.json
 
   dimension: salary {
@@ -11,7 +15,7 @@ view: district {
 
   dimension: crimes_95 {
     description: "# of crimes committed in 95"
-    type: string
+    type: number
     sql: ${TABLE}.Crimes_95 ;;
   }
 
@@ -19,6 +23,20 @@ view: district {
     description: "# of crimes committed in 96"
     type: number
     sql: ${TABLE}.Crimes_96 ;;
+  }
+
+  dimension: 96_crime_rate_per_100k {
+    description: "The crime rate for 96 per 100,000"
+    type: number
+    sql: (${crimes_96}/${inhabitants});;
+    value_format: "0.00\%"
+  }
+
+  dimension: 95_crime_rate_per_100k {
+    description: "The crime rate for 96 per 100,000"
+    type: number
+    sql: SAFE_CAST(${crimes_95} AS float64)/${inhabitants};;
+    value_format: "0.00\%"
   }
 
   dimension: district_code {
@@ -92,18 +110,45 @@ view: district {
   }
 
   dimension: unemployment_95 {
-    type: string
-    sql: ${TABLE}.Unemployment_95 ;;
+    type: number
+    sql: SAFE_CAST(${TABLE}.Unemployment_95 AS FLOAT64)/100 ;;
+    value_format: "0.00%"
   }
 
   dimension: unemployment_96 {
     type: number
-    sql: ${TABLE}.Unemployment_96 ;;
+    sql: ${TABLE}.Unemployment_96/100 ;;
+    value_format: "0.00%"
   }
 
   measure: count {
+    label: "Count of district"
     type: count
-    drill_fields: [district_name]
+    drill_fields: [district_name, inhabitants, orders.k_symbol]
+  }
+
+  measure: average_crime_rate_95 {
+    type: average
+    sql:  ${95_crime_rate_per_100k}*1.0;;
+    value_format: "0.00%"
+  }
+
+  measure: average_crime_rate_96 {
+    type: average
+    sql:  ${96_crime_rate_per_100k}*1.0;;
+    value_format: "0.00%"
+  }
+
+  measure: average_unemployment_rate_95 {
+    type: average
+    sql:  ${unemployment_95}*1.0;;
+    value_format: "0.00%"
+  }
+
+  measure: average_unemployment_rate_96 {
+    type: average
+    sql:  ${unemployment_96}*1.0;;
+    value_format: "0.00%"
   }
 
   measure: average_salary {

@@ -5,7 +5,7 @@ view: account {
     description: "Identification of account"
     primary_key: yes
     type: string
-    sql: CAST(${TABLE}.account_id AS STRING) ;;
+    sql: ${TABLE}.account_id ;;
   }
 
   dimension_group: account_creation {
@@ -16,6 +16,7 @@ view: account {
       raw,
       week,
       month,
+      month_num,
       fiscal_quarter,
       quarter,
       year

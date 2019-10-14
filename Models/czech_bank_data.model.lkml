@@ -16,10 +16,16 @@ datagroup: czech_financial_data_default_datagroup {
 
 
 explore: account {
-  persist_with: czech_financial_data_default_datagroup
+  # persist_with: czech_financial_data_default_datagroup
   join: orders {
     type: left_outer
     sql_on: ${account.account_id} = ${orders.account_id} ;;
+    relationship: many_to_one
+  }
+
+  join: district {
+    type: left_outer
+    sql_on: ${account.district_id} = ${district.district_code} ;;
     relationship: many_to_one
   }
 
@@ -33,6 +39,18 @@ explore: account {
     type: left_outer
     sql_on: ${account.account_id} = ${loans.account_id} ;;
     relationship: many_to_one
+    }
+
+  join: disp {
+    type: left_outer
+    sql_on: ${account.account_id} = ${disp.account_id} ;;
+    relationship: one_to_one
+  }
+
+  join: card {
+    type: left_outer
+    sql_on: ${disp.disp_id} = ${card.disposition_id} ;;
+    relationship: one_to_one
   }
 }
 

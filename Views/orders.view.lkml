@@ -35,6 +35,7 @@ view: orders {
   }
 
   measure: count {
+    label: "Payments"
     type: count
     drill_fields: [order_id, account.account_id]
   }

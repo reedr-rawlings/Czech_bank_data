@@ -26,6 +26,7 @@ view: card {
       date,
       week,
       month,
+      month_num,
       quarter,
       year
     ]

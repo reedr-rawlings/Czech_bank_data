@@ -45,13 +45,16 @@ view: loans {
   }
 
   dimension: status {
-    description: "status of paying off the loan:
-    'A' stands for contract finished, no problems,
-    'B' stands for contract finished, loan not payed,
-    'C' stands for running contract, OK so far,
-    'D' stands for running contract, client in debt"
+    description: "Status of contract; either paid or unpaid. Finished or unfinished. "
     type: string
-    sql: ${TABLE}.status ;;
+    sql:
+      CASE
+        WHEN ${TABLE}.status = "A" THEN "Contract Finished: Paid"
+        WHEN ${TABLE}.status = "B" THEN "Contract Finished: Unpaid"
+        WHEN ${TABLE}.status = "C" THEN "Contract Active: Paid"
+        WHEN ${TABLE}.status = "D" THEN "Contract Active: Unpaid"
+        ELSE "No Contract"
+        END;;
   }
 
   dimension: status_long {
