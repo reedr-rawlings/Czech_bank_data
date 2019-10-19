@@ -106,12 +106,12 @@ view: transactionss {
 #   }
 
   measure: total_balance {
-    type: number
+    type: sum_distinct
     sql: ${balance} ;;
   }
 
   measure: current_amount {
-    type: number
+    type: sum_distinct
     sql: ${amount} ;;
   }
 
