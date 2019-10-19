@@ -13,6 +13,22 @@ datagroup: czech_financial_data_default_datagroup {
   max_cache_age: "48 hour"
 }
 
+explore: client {
+  extends: [account]
+  label: "Credit Card Holders"
+  join: disp {
+    type: left_outer
+    sql_on: ${disp.client_id} = ${client.client_id} ;;
+    relationship: one_to_many
+  }
+
+  join: account {
+    type: left_outer
+    sql_on: ${disp.account_id} = ${account.account_id} ;;
+  relationship: one_to_many
+  }
+}
+
 
 
 explore: account {
@@ -32,13 +48,13 @@ explore: account {
   join: transactionss {
     type: left_outer
     sql_on: ${account.account_id} = ${transactionss.account_id} ;;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 
   join: loans {
     type: left_outer
     sql_on: ${account.account_id} = ${loans.account_id} ;;
-    relationship: many_to_one
+    relationship: many_to_many
     }
 
   join: disp {
@@ -62,18 +78,6 @@ explore: card {
   }
 }
 
-explore: client {
-  join: disp {
-    type: left_outer
-    sql_on: ${client.client_id} = ${disp.client_id} ;;
-    relationship: many_to_one
-  }
-  join: district {
-    type: left_outer
-    sql_on: ${client.district_id} = ${district.district_code} ;;
-    relationship: many_to_one
-  }
-}
 
 explore: disp {
   join: account {
@@ -111,6 +115,18 @@ explore: district {
   join: orders {
     type: left_outer
     sql_on: ${account.account_id} = ${orders.account_id} ;;
+    relationship: many_to_one
+  }
+
+  join: disp {
+    type: left_outer
+    sql_on: ${disp.account_id} = ${account.account_id} ;;
+    relationship: many_to_one
+  }
+
+  join: card {
+    type: left_outer
+    sql_on: ${card.disposition_id} = ${disp.disp_id} ;;
     relationship: many_to_one
   }
 }

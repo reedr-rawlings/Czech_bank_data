@@ -8,7 +8,8 @@ view: card {
   }
 
   dimension: disposition_id {
-    description: "Disposition to an account"
+    description: "Disposition id for a single account"
+    hidden: yes
     type: number
     sql: ${TABLE}.disposition_id ;;
   }

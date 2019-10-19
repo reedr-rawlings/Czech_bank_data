@@ -2,12 +2,12 @@ view: loans {
   sql_table_name: czech_financial_data.loans ;;
 
   dimension: loan_id {
-    primary_key: yes
     type: number
     sql: ${TABLE}.loan_id ;;
   }
 
   dimension: account_id {
+    primary_key: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.account_id ;;
@@ -30,8 +30,8 @@ view: loans {
 #   }
 
   dimension: date {
-    type: number
-    sql: ${TABLE}.date ;;
+    type: date
+    sql: PARSE_DATE('%y%m%d', CAST(${TABLE}.date AS STRING)) ;;
   }
 
   dimension: duration_year {
@@ -58,10 +58,10 @@ view: loans {
         END;;
   }
 
-  dimension: status_long {
-    type: string
-    sql: ${TABLE}.Status_long ;;
-  }
+#   dimension: status_long {
+#     type: string
+#     sql: ${TABLE}.Status_long ;;
+#   }
 
   measure: count {
     type: count

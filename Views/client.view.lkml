@@ -47,4 +47,14 @@ view: client {
     type: count
     drill_fields: [client_id, disp.count]
   }
+
+  measure: total_client_cards {
+    type: sum
+    sql: ${card.card_id} ;;
+  }
+
+  measure: total_clients {
+    type: sum
+    sql: ${client_id} ;;
+  }
 }

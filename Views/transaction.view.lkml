@@ -3,13 +3,14 @@ view: transactionss {
 
   dimension: account {
     type: string
-    sql: CAST(${TABLE}.account AS STRING) ;;
+    sql: ${TABLE}.account ;;
   }
 
   dimension: account_id {
     type: string
-    # hidden: yes
-    sql: CAST(${TABLE}.account_id AS STRING) ;;
+    hidden: yes
+    #primary_key: yes
+    sql: ${TABLE}.account_id ;;
   }
 
   dimension: amount {
@@ -29,7 +30,7 @@ view: transactionss {
 
   dimension_group: date {
     type: time
-#     datatype: date
+    datatype: date
     timeframes: [
       raw,
       date,
@@ -40,7 +41,6 @@ view: transactionss {
       year
     ]
     convert_tz: no
-    datatype: date
     sql: PARSE_DATE('%y%m%d', CAST(${TABLE}.date AS STRING)) ;;
   }
 
@@ -84,6 +84,7 @@ view: transactionss {
   }
 
   dimension: trans_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.trans_id ;;
   }
@@ -105,12 +106,12 @@ view: transactionss {
 #   }
 
   measure: total_balance {
-    type: sum
+    type: number
     sql: ${balance} ;;
   }
 
   measure: current_amount {
-    type: sum
+    type: number
     sql: ${amount} ;;
   }
 
