@@ -140,4 +140,12 @@ view: client {
       value: "junior"
     }
   }
+
+  dimension: received_cc_invite {
+    hidden: yes
+    label: "3 Month CC Invite"
+    description: "Results to true if a customer received an invite in the last 3 months"
+    type: string
+    sql: TRUE ;;
+  }
 }

@@ -1,5 +1,8 @@
 connection: "lookerdata_publicdata_standard_sql"
 
+# Table Relationships - https://data.world/lpetrocelli/czech-financial-dataset-real-anonymized-transactions/workspace/file?filename=data+map.gif
+# Table Descriptions/Data Dictionary - https://data.world/lpetrocelli/czech-financial-dataset-real-anonymized-transactions/workspace/data-dictionary
+
 # include all the views
 include: "/Views/*.view"
 
@@ -21,17 +24,17 @@ explore: client {
     sql_on: ${disp.client_id} = ${client.client_id} ;;
     relationship: one_to_many
   }
-
-  join: account {
-    type: left_outer
-    sql_on: ${disp.account_id} = ${account.account_id} ;;
-  relationship: one_to_many
-  }
+#   join: account {
+#     type: left_outer
+#     sql_on: ${disp.account_id} = ${account.account_id} ;;
+#   relationship: one_to_many
+#   }
 }
 
-
+# Why does not including the view_name: account, but including it as a join for client cause duplicate names?
 
 explore: account {
+  view_name: account
   # persist_with: czech_financial_data_default_datagroup
   join: orders {
     type: left_outer
@@ -68,15 +71,20 @@ explore: account {
     sql_on: ${disp.disp_id} = ${card.disposition_id} ;;
     relationship: one_to_one
   }
-}
-
-explore: card {
-  join: disp {
+  join: client {
     type: left_outer
-    sql_on: ${card.disposition_id} = ${disp.disp_id} ;;
-    relationship: many_to_one
+    sql_on: ${client.client_id} =${disp.client_id} ;;
+    relationship: one_to_many
   }
 }
+
+# explore: card {
+#   join: disp {
+#     type: left_outer
+#     sql_on: ${card.disposition_id} = ${disp.disp_id} ;;
+#     relationship: many_to_one
+#   }
+# }
 
 
 explore: disp {
@@ -96,6 +104,11 @@ explore: disp {
     type: left_outer
     sql_on: ${disp.client_id} = ${client.client_id} ;;
     relationship: many_to_one
+  }
+  join: transactionss {
+    type: left_outer
+    sql_on: ${account.account_id} = ${transactionss.account_id} ;;
+    relationship: one_to_many
   }
 }
 
@@ -128,6 +141,11 @@ explore: district {
     type: left_outer
     sql_on: ${card.disposition_id} = ${disp.disp_id} ;;
     relationship: many_to_one
+  }
+  join: transactionss {
+    type: left_outer
+    sql_on: ${account.account_id} = ${transactionss.account_id} ;;
+    relationship: one_to_many
   }
 }
 

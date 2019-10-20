@@ -1,4 +1,5 @@
 view: transactionss {
+  label: "Transactions per account"
   sql_table_name: czech_financial_data.transactionss ;;
 
   dimension: account {
@@ -28,7 +29,7 @@ view: transactionss {
     sql: ${TABLE}.bank ;;
   }
 
-  dimension_group: date {
+  dimension_group: transaction {
     type: time
     datatype: date
     timeframes: [
@@ -105,15 +106,14 @@ view: transactionss {
 #     sql: ${TABLE}.type ;;
 #   }
 
-  measure: total_balance {
-    type: sum_distinct
+  measure: average_balance {
+    type: average
     sql: ${balance} ;;
+    value_format: "0.00"
+    html: {{rendered_value}} CZK ;;
   }
 
-  measure: current_amount {
-    type: sum_distinct
-    sql: ${amount} ;;
-  }
+
 
   measure: count {
     type: count

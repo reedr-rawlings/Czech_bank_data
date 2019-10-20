@@ -20,6 +20,7 @@ view: card {
   }
 
   dimension_group: issued_yymmdd {
+    label: "Issued"
     description: "Time card was issued"
     type: time
     datatype: date
@@ -40,6 +41,14 @@ view: card {
 #     sql: TIMESTAMP(PARSE_DATE('%Y%m%d', CAST(${TABLE}.issued_yymmdd AS STRING))) ;;
 #   }
 
+#   dimension: has_credit_card {
+#     type: number
+#     sql: CASE WHEN ${type_of_card} IS NULL
+#     THEN 0
+#     ELSE 1
+#     END;;
+#   }
+
   dimension: type_of_card {
     description: "Type of card: Junior, Gold, Classic"
     type: string
@@ -48,6 +57,27 @@ view: card {
     ELSE ${TABLE}.type_of_card
     END;;
    }
+
+  measure: junior_card_qualifier {
+    type: sum
+    filters: {
+      field: type_of_card
+      value: "No Card"
+    }
+    filters: {
+      field: client.age
+      value: ">=18 AND <=25"
+    }
+    filters: {
+      field: client.received_cc_invite
+      value: "No Card"
+    }
+
+    filters: {
+      field: transactionss.transaction_month
+      value: "1998-10-01 for 3 months"
+    }
+  }
 
   measure: count {
     type: count
