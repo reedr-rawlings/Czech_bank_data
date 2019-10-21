@@ -14,6 +14,7 @@
 2. HTML is a jank way to add flexibility to visualizations. We already ask folks to learn LookML
 3. Finding a focus area for analysis.
 4. A more recent data set (filters).
+5. Looker offers a ton of solutions, but I have no idea which one is the best.
 
 ## Feature Requests
 1. Dimensionalize a measure
@@ -22,6 +23,11 @@
 ## If I had more time
 1. Analyzed comparative metrics between banks.
 2. Better analyze by groups.
+
+## Shout-outs
+- TJ & Andrew for helping me troubleshoot why filters can increase values.
+- Sarah for covering a bunch of my chat shifts.
+- Zam for first round mentorship.
 
 
 

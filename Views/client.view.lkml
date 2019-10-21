@@ -57,10 +57,10 @@ view: client {
     html:
     <a href="#drillmenu" target="_self">
     <div class="vis">
-    <div class="vis-single-value" style="font-size:36px; background-image: linear-gradient(to left, #c679f7, #deb7f7); color:#ffffff">
+    <div class="vis-single-value" style="font-size:36px; background-image: linear-gradient(to left, #FFcF40, #ffffff); color:#000000">
     <font color="#5A2FC2"; font-size:200%><center><b>Clients with Credit Cards:</b>&nbsp; {{ linked_value }} </font>
 
-    <p style="color:#f7f1e9;">{{ customers_with_cards._rendered_value  }} of All Customers Hold Credit Cards </p>
+    <p style="color:#57595d;">{{ customers_with_cards._rendered_value  }} of All Customers Hold Credit Cards </p>
 
     <p style="float:left; font-family: Times, serif;">
     <i class="fa fa-minus-square">&nbsp;</i>Junior Cards {{ percent_junior_cards._rendered_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,7 +69,7 @@ view: client {
     </div>
     </div>
     </a>;;
-    value_format: "0.00%"
+    value_format: "0"
     #New field with derived table that drills to this set-up
     drill_fields: [client_id, transactionss.average_balance, district.district_name, district.region]
   }

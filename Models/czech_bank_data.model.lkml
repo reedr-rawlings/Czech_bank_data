@@ -16,13 +16,25 @@ datagroup: czech_financial_data_default_datagroup {
   max_cache_age: "48 hour"
 }
 
+# explore: cc_emails {
+#   label: "Email Responses"
+#   extends: [client]
+
+# }
+
 explore: client {
   extends: [account]
+  always_join: [card]
   label: "Credit Card Holders"
   join: disp {
     type: left_outer
     sql_on: ${account.account_id} = ${disp.account_id} ;;
     relationship: one_to_many
+  }
+  join: cc_emails {
+    type: left_outer
+    sql_on: ${client.client_id} = cc_emails.client_id ;;
+    relationship: one_to_one
   }
 #   join: account {
 #     type: left_outer

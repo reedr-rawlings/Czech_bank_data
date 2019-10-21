@@ -1,5 +1,5 @@
 # If necessary, uncomment the line below to include explore_source.
-# include: "czech_bank_data.model.lkml"
+include: "/Models/czech_bank_data.model.lkml"
 
 view: clients_cc_facts {
   derived_table: {
@@ -7,6 +7,7 @@ view: clients_cc_facts {
       column: client_id {}
       column: average_balance { field: transactionss.average_balance }
       column: no_card {}
+#       column: junior_card_qualifier { field: card.junior_card_qualifier }
 
 #       bind_all_filters: yes
     }
@@ -23,5 +24,6 @@ view: clients_cc_facts {
   dimension: no_card {
 #     value_format: "0.00%"
   type: number
-}
+  }
+
 }

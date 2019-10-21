@@ -60,7 +60,7 @@ view: card {
 
   measure: junior_card_qualifier {
     type: count_distinct
-    sql: client.client_id ;;
+    sql: ${client.client_id} ;;
     filters: {
       field: type_of_card
       value: "No Card"
