@@ -59,7 +59,8 @@ view: card {
    }
 
   measure: junior_card_qualifier {
-    type: sum
+    type: count_distinct
+    sql: client.client_id ;;
     filters: {
       field: type_of_card
       value: "No Card"
@@ -70,12 +71,16 @@ view: card {
     }
     filters: {
       field: client.received_cc_invite
-      value: "No Card"
+      value: "True"
     }
 
     filters: {
       field: transactionss.transaction_month
       value: "1998-10-01 for 3 months"
+    }
+    filters: {
+      field: clients_cc_facts.average_balance
+      value: ">=45000.00"
     }
   }
 

@@ -21,7 +21,7 @@ explore: client {
   label: "Credit Card Holders"
   join: disp {
     type: left_outer
-    sql_on: ${disp.client_id} = ${client.client_id} ;;
+    sql_on: ${account.account_id} = ${disp.account_id} ;;
     relationship: one_to_many
   }
 #   join: account {
@@ -30,7 +30,6 @@ explore: client {
 #   relationship: one_to_many
 #   }
 }
-
 # Why does not including the view_name: account, but including it as a join for client cause duplicate names?
 
 explore: account {
@@ -76,6 +75,11 @@ explore: account {
     sql_on: ${client.client_id} =${disp.client_id} ;;
     relationship: one_to_many
   }
+  join: clients_cc_facts {
+    type: left_outer
+    sql_on: ${client.client_id} = ${clients_cc_facts.client_id} ;;
+    relationship: one_to_one
+  }
 }
 
 # explore: card {
@@ -88,6 +92,7 @@ explore: account {
 
 
 explore: disp {
+  fields: [ALL_FIELDS*, -card.junior_card_qualifier]
   join: account {
     type: left_outer
     sql_on: ${disp.account_id} = ${account.account_id} ;;
@@ -113,6 +118,7 @@ explore: disp {
 }
 
 explore: district {
+  fields: [-card.junior_card_qualifier]
   join: client {
     type: left_outer
     sql_on: ${district.district_code} = ${client.district_id};;
@@ -146,6 +152,11 @@ explore: district {
     type: left_outer
     sql_on: ${account.account_id} = ${transactionss.account_id} ;;
     relationship: one_to_many
+  }
+  join: clients_cc_facts {
+    type: left_outer
+    sql_on: ${client.client_id} = ${clients_cc_facts.client_id} ;;
+    relationship: one_to_one
   }
 }
 

@@ -55,18 +55,23 @@ view: client {
       value: "-No Card"
     }
     html:
+    <a href="#drillmenu" target="_self">
     <div class="vis">
     <div class="vis-single-value" style="font-size:36px; background-image: linear-gradient(to left, #c679f7, #deb7f7); color:#ffffff">
-    <font color="#5A2FC2"; font-size:200%><center><b>Clients with Credit Cards:</b>&nbsp; {{value}} </font>
-    <p style="color:#f7f1e9;">{{ customers_with_cards._rendered_value  }} Hold Credit Cards </p>
+    <font color="#5A2FC2"; font-size:200%><center><b>Clients with Credit Cards:</b>&nbsp; {{ linked_value }} </font>
+
+    <p style="color:#f7f1e9;">{{ customers_with_cards._rendered_value  }} of All Customers Hold Credit Cards </p>
 
     <p style="float:left; font-family: Times, serif;">
     <i class="fa fa-minus-square">&nbsp;</i>Junior Cards {{ percent_junior_cards._rendered_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <i class="fa fa-money">&nbsp;</i>Classic Cards {{ percent_classic_cards._rendered_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <i class="fa fa-credit-card">&nbsp;</i>Gold Cards {{ percent_gold_cards._rendered_value }}</p></center>
+    <i class="fa fa-credit-card">&nbsp;</i>Gold Cards {{ percent_gold_cards._linked_value }}</p></center>
     </div>
-    </div>      ;;
+    </div>
+    </a>;;
     value_format: "0.00%"
+    #New field with derived table that drills to this set-up
+    drill_fields: [client_id, transactionss.average_balance, district.district_name, district.region]
   }
 
   measure: gold_cards {
@@ -77,11 +82,12 @@ view: client {
       value: "gold"
     }
     value_format: "0.00%"
+    drill_fields: [clients_by_card_type, no_card]
   }
 
   measure: no_card {
     type: count
-    hidden: yes
+#     hidden: yes
     filters: {
       field: card.type_of_card
       value: "No Card"
@@ -103,6 +109,7 @@ view: client {
     type: number
     sql: ${gold_cards}/${all_card} ;;
     value_format: "0.00%"
+    drill_fields: [client_id, transactionss.average_balance, district.district_name, district.region]
   }
 
   measure: percent_classic_cards {
@@ -146,6 +153,6 @@ view: client {
     label: "3 Month CC Invite"
     description: "Results to true if a customer received an invite in the last 3 months"
     type: string
-    sql: TRUE ;;
+    sql: "True" ;;
   }
 }

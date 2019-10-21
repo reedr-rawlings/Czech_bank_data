@@ -109,7 +109,7 @@ view: transactionss {
   measure: average_balance {
     type: average
     sql: ${balance} ;;
-    value_format: "0.00"
+    value_format: "0.0000"
     html: {{rendered_value}} CZK ;;
   }
 
