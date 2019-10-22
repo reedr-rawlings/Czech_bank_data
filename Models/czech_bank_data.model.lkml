@@ -17,24 +17,6 @@ datagroup: czech_financial_data_default_datagroup {
   max_cache_age: "48 hour"
 }
 
-# explore: cc_emails {
-#   label: "Email Responses"
-#   extends: [client]
-# }
-
-# explore: cc_emails {
-#   join: client {
-#     type: left_outer
-#     sql_on: ${client.client_id} = ${cc_emails.client_id} ;;
-#     relationship: one_to_one
-#   }
-#   join: credit_qualifiers_dt {
-#     type: left_outer
-#     sql_on: ${credit_qualifiers_dt.client_id} = ${client.client_id} ;;
-#     relationship: one_to_one
-#   }
-# }
-
 explore: client {
   extends: [account]
   always_join: [card]
@@ -71,7 +53,6 @@ explore: client {
 #     sql_on: ${disp.account_id} = ${account.account_id} ;;
 #   relationship: one_to_many
 #   }
-# Why does not including the view_name: account, but including it as a join for client cause duplicate names?
 
 explore: account {
 #   fields: [ALL_FIELDS*, -card.junior_card_qualifier]
@@ -129,15 +110,6 @@ explore: account {
     relationship: one_to_one
   }
 }
-
-# explore: card {
-#   join: disp {
-#     type: left_outer
-#     sql_on: ${card.disposition_id} = ${disp.disp_id} ;;
-#     relationship: many_to_one
-#   }
-# }
-
 
 explore: disp {
   fields: [ALL_FIELDS*, -card.junior_card_qualifier, -card.gold_card_qualifier, -card.classic_card_qualifier, -card.gold_card_qualifier_prague]
@@ -208,14 +180,6 @@ explore: district {
   }
 }
 
-explore: loans {
-  join: account {
-    type: left_outer
-    sql_on: ${loans.account_id} = ${account.account_id} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: orders {
   join: account {
     type: left_outer
@@ -229,8 +193,6 @@ explore: orders {
   }
 }
 
-explore: orders_dt {}
-
 explore: transactionss {
   join: account {
     type: left_outer
@@ -238,8 +200,6 @@ explore: transactionss {
     relationship: many_to_one
   }
 }
-
-
 
 map_layer: czech {
   format: topojson

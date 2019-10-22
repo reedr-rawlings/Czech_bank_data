@@ -12,14 +12,17 @@ view: cc_emails {
   }
 
   dimension: junior_cc_signups {
+    group_label: "Credit Card Signups"
     type: number
     sql: 16 ;;
   }
   dimension: classic_cc_signups {
+    group_label: "Credit Card Signups"
     type: number
     sql: 23 ;;
   }
   dimension: gold_cc_signups {
+    group_label: "Credit Card Signups"
     type: number
     sql: 2 ;;
   }

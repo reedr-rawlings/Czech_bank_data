@@ -30,6 +30,7 @@
 - Sarah for covering a bunch of my chat shifts.
 - Zam for first round mentorship.
 - Paola "k ur welcome".
+- Dr. Mirsad Hadzikadic for running an analysis over this dataset.
 - Jeffty for keeping me focused and on-task, helping me troubleshoot errors of all shapes and sizes and offering guidance throughout all of our work.
 
 

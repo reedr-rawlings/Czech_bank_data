@@ -16,6 +16,13 @@ view: loans {
   dimension: amount {
     type: number
     sql: ${TABLE}.amount ;;
+    html:
+    <div class="vis">
+    <div class="vis-single-value" style="font-size:36px">
+    <i class="fa fa-dollar">&nbsp;</i><font color="#5A2FC2"; font-size:200%><center><b>Total Loan:</b>&nbsp; {{ rendered_value }} </font>
+    <p style="float:left; font-family: Times, serif;">
+    </div>
+    </div>;;
   }
 
 #   dimension: contract_finished {
@@ -31,6 +38,7 @@ view: loans {
 
   dimension_group: loans {
     type: time
+    datatype: date
     timeframes: [
       date,
       month,

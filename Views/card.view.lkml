@@ -56,6 +56,13 @@ view: card {
     THEN "No Card"
     ELSE ${TABLE}.type_of_card
     END;;
+    html:
+    <div class="vis">
+    <div class="vis-single-value" style="font-size:36px">
+    <i class="fa fa-credit-card">&nbsp;</i><font color="#5A2FC2"; font-size:200%><center><b>Card Type:</b>&nbsp; {{ rendered_value }} </font>
+    <p style="float:left; font-family: Times, serif;">
+    </div>
+    </div>;;
    }
 
   measure: junior_card_qualifier {
