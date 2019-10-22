@@ -108,6 +108,35 @@ view: card {
     }
   }
 
+  measure: gold_card_qualifier_prague {
+    type: count_distinct
+    sql: ${client.client_id} ;;
+    filters: {
+      field: type_of_card
+      value: "No Card"
+    }
+    filters: {
+      field: client.age
+      value: ">=35 AND <=65"
+    }
+    filters: {
+      field: client.district_id
+      value: "1"
+    }
+    filters: {
+      field: client.received_cc_invite
+      value: "True"
+    }
+    filters: {
+      field: transactionss.transaction_month
+      value: "1998-10-01 for 3 months"
+    }
+    filters: {
+      field: clients_cc_facts.average_balance
+      value: ">=60000.00"
+    }
+  }
+
   measure: gold_card_qualifier {
     type: count_distinct
     sql: ${client.client_id} ;;
@@ -129,7 +158,7 @@ view: card {
     }
     filters: {
       field: clients_cc_facts.average_balance
-      value: ">=40000.00"
+      value: ">=60000.00"
     }
   }
 

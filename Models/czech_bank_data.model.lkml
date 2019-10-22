@@ -1,5 +1,6 @@
 connection: "lookerdata_publicdata_standard_sql"
 
+# Resources for this thesis model
 # Table Relationships - https://data.world/lpetrocelli/czech-financial-dataset-real-anonymized-transactions/workspace/file?filename=data+map.gif
 # Table Descriptions/Data Dictionary - https://data.world/lpetrocelli/czech-financial-dataset-real-anonymized-transactions/workspace/data-dictionary
 
@@ -139,7 +140,7 @@ explore: account {
 
 
 explore: disp {
-  fields: [ALL_FIELDS*, -card.junior_card_qualifier, -card.gold_card_qualifier, -card.classic_card_qualifier]
+  fields: [ALL_FIELDS*, -card.junior_card_qualifier, -card.gold_card_qualifier, -card.classic_card_qualifier, -card.gold_card_qualifier_prague]
   join: account {
     type: left_outer
     sql_on: ${disp.account_id} = ${account.account_id} ;;

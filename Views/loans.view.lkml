@@ -29,8 +29,14 @@ view: loans {
 #     sql: ${TABLE}.Contract_Status ;;
 #   }
 
-  dimension: date {
-    type: date
+  dimension_group: loans {
+    type: time
+    timeframes: [
+      date,
+      month,
+      quarter,
+      year
+    ]
     sql: PARSE_DATE('%y%m%d', CAST(${TABLE}.date AS STRING)) ;;
   }
 

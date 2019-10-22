@@ -30,6 +30,7 @@
 - Sarah for covering a bunch of my chat shifts.
 - Zam for first round mentorship.
 - Paola "k ur welcome".
+- Jeffty for keeping me focused and on-task, helping me troubleshoot errors of all shapes and sizes and offering guidance throughout all of our work.
 
 
 Markdown reference - [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown).
