@@ -63,8 +63,8 @@ view: client {
     <p style="color:#57595d;">{{ customers_with_cards._rendered_value  }} of All Customers Hold Credit Cards </p>
 
     <p style="float:left; font-family: Times, serif;">
-    <i class="fa fa-minus-square">&nbsp;</i>Junior Cards {{ percent_junior_cards._rendered_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <i class="fa fa-money">&nbsp;</i>Classic Cards {{ percent_classic_cards._rendered_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <i class="fa fa-minus-square">&nbsp;</i>Junior Cards {{ percent_junior_cards._linked_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <i class="fa fa-money">&nbsp;</i>Classic Cards {{ percent_classic_cards._linked_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <i class="fa fa-credit-card">&nbsp;</i>Gold Cards {{ percent_gold_cards._linked_value }}</p></center>
     </div>
     </div>
@@ -82,22 +82,22 @@ view: client {
       value: "gold"
     }
     value_format: "0.00%"
-    drill_fields: [clients_by_card_type, no_card]
+    drill_fields: [district.region, client_id, clients_by_card_type, no_card]
   }
 
   measure: no_card {
     type: count
-#     hidden: yes
+    hidden: yes
     filters: {
       field: card.type_of_card
       value: "No Card"
     }
-    value_format: "0.00%"
+    # value_format: "0.00%"
   }
 
   measure: all_card {
     type: count
-#     hidden: yes
+    hidden: yes
     filters: {
       field: card.type_of_card
       value: "-No Card"
@@ -116,12 +116,14 @@ view: client {
     type: number
     sql: ${classic_cards}/${all_card} ;;
     value_format: "0.00%"
+    drill_fields: [district.region, client_id, clients_by_card_type, no_card]
   }
 
   measure: percent_junior_cards {
     type: number
     sql: ${junior_cards}/${all_card} ;;
     value_format: "0.00%"
+    drill_fields: [district.region, client_id, clients_by_card_type, no_card]
   }
 
   measure: customers_with_cards{

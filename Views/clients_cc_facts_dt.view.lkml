@@ -1,6 +1,5 @@
 # If necessary, uncomment the line below to include explore_source.
-include: "/Models/czech_bank_data.model.lkml"
-
+# include: "/Models/czech_bank_data.model.lkml"
 view: clients_cc_facts {
   derived_table: {
     explore_source: client {
@@ -11,6 +10,7 @@ view: clients_cc_facts {
 
 #       bind_all_filters: yes
     }
+    persist_for: "48 hours"
   }
   dimension: client_id {
     primary_key: yes

@@ -8,6 +8,7 @@
 3. Customization with HTML is rad.
 4. Looker does too much for a single analyst.
 5. Filtered measures are hot.
+6. Comment your code.
 
 ## What bugs me/Difficulties
 1. Extends are incredibly confusing as you add more layers
@@ -28,7 +29,7 @@
 - TJ & Andrew for helping me troubleshoot why filters can increase values.
 - Sarah for covering a bunch of my chat shifts.
 - Zam for first round mentorship.
-
+- Paola "k ur welcome".
 
 
 Markdown reference - [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown).

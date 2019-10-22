@@ -19,7 +19,19 @@ datagroup: czech_financial_data_default_datagroup {
 # explore: cc_emails {
 #   label: "Email Responses"
 #   extends: [client]
+# }
 
+# explore: cc_emails {
+#   join: client {
+#     type: left_outer
+#     sql_on: ${client.client_id} = ${cc_emails.client_id} ;;
+#     relationship: one_to_one
+#   }
+#   join: credit_qualifiers_dt {
+#     type: left_outer
+#     sql_on: ${credit_qualifiers_dt.client_id} = ${client.client_id} ;;
+#     relationship: one_to_one
+#   }
 # }
 
 explore: client {
@@ -33,18 +45,35 @@ explore: client {
   }
   join: cc_emails {
     type: left_outer
-    sql_on: ${client.client_id} = cc_emails.client_id ;;
+    sql_on: ${client.client_id} = ${cc_emails.client_id} ;;
     relationship: one_to_one
   }
+  join: clients_cc_facts {
+#     from: client
+    type: left_outer
+    sql_on: ${client.client_id} = ${clients_cc_facts.client_id} ;;
+    relationship: one_to_one
+  }
+  join: credit_qualifiers_dt {
+    type: left_outer
+    sql_on: ${credit_qualifiers_dt.client_id} = ${client.client_id}  ;;
+    relationship: one_to_one
+  }
+  join: transactionss {
+    type: left_outer
+    sql_on: ${account.account_id} = ${transactionss.account_id} ;;
+    relationship: one_to_many
+  }
+}
 #   join: account {
 #     type: left_outer
 #     sql_on: ${disp.account_id} = ${account.account_id} ;;
 #   relationship: one_to_many
 #   }
-}
 # Why does not including the view_name: account, but including it as a join for client cause duplicate names?
 
 explore: account {
+#   fields: [ALL_FIELDS*, -card.junior_card_qualifier]
   view_name: account
   # persist_with: czech_financial_data_default_datagroup
   join: orders {
@@ -88,8 +117,14 @@ explore: account {
     relationship: one_to_many
   }
   join: clients_cc_facts {
+#     from: client
     type: left_outer
     sql_on: ${client.client_id} = ${clients_cc_facts.client_id} ;;
+    relationship: one_to_one
+  }
+  join: credit_qualifiers_dt {
+    type: left_outer
+    sql_on: ${credit_qualifiers_dt.client_id} = ${client.client_id}  ;;
     relationship: one_to_one
   }
 }
@@ -104,7 +139,7 @@ explore: account {
 
 
 explore: disp {
-  fields: [ALL_FIELDS*, -card.junior_card_qualifier]
+  fields: [ALL_FIELDS*, -card.junior_card_qualifier, -card.gold_card_qualifier, -card.classic_card_qualifier]
   join: account {
     type: left_outer
     sql_on: ${disp.account_id} = ${account.account_id} ;;
@@ -130,7 +165,7 @@ explore: disp {
 }
 
 explore: district {
-  fields: [-card.junior_card_qualifier]
+#   fields: [-card.junior_card_qualifier]
   join: client {
     type: left_outer
     sql_on: ${district.district_code} = ${client.district_id};;

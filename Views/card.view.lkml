@@ -73,7 +73,6 @@ view: card {
       field: client.received_cc_invite
       value: "True"
     }
-
     filters: {
       field: transactionss.transaction_month
       value: "1998-10-01 for 3 months"
@@ -81,6 +80,56 @@ view: card {
     filters: {
       field: clients_cc_facts.average_balance
       value: ">=45000.00"
+    }
+  }
+
+  measure: classic_card_qualifier {
+    type: count_distinct
+    sql: ${client.client_id} ;;
+    filters: {
+      field: type_of_card
+      value: "No Card"
+    }
+    filters: {
+      field: client.age
+      value: ">=26 AND <=55"
+    }
+    filters: {
+      field: client.received_cc_invite
+      value: "True"
+    }
+    filters: {
+      field: transactionss.transaction_month
+      value: "1998-10-01 for 3 months"
+    }
+    filters: {
+      field: clients_cc_facts.average_balance
+      value: ">=50000.00"
+    }
+  }
+
+  measure: gold_card_qualifier {
+    type: count_distinct
+    sql: ${client.client_id} ;;
+    filters: {
+      field: type_of_card
+      value: "classic"
+    }
+    filters: {
+      field: client.age
+      value: ">=26"
+    }
+    filters: {
+      field: client.received_cc_invite
+      value: "True"
+    }
+    filters: {
+      field: transactionss.transaction_month
+      value: "1998-10-01 for 3 months"
+    }
+    filters: {
+      field: clients_cc_facts.average_balance
+      value: ">=40000.00"
     }
   }
 
