@@ -45,5 +45,9 @@ view: account {
     label: "Count of Account IDs"
     type: count
     drill_fields: [account_id, loans.count, orders.count, disp.count, transactions_.count]
+    link: {
+      label: "Drill to Region"
+      url: "/dashboards/463?Region={% if district.region._in_query %}{{district.region._value}}{% else %}{% endif %}"
+    }
   }
 }

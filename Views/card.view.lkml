@@ -88,6 +88,7 @@ view: card {
       field: clients_cc_facts.average_balance
       value: ">=45000.00"
     }
+    drill_fields: [client.id]
   }
 
   measure: classic_card_qualifier {
