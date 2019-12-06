@@ -49,6 +49,11 @@ view: district {
     map_layer_name: czech
     type: string
     sql: ${TABLE}.District_Name ;;
+    html: <a href="/explore/czech_bank_data/district?fields=district.region,district.district_name&f[card.issued_yymmdd_year]={{ _filters['card.issued_yymmdd_year'] }}">{{value}}</a> ;;
+    link: {
+      label: "Drill to LookMLSME"
+      url: "https://productday.dev.looker.com/dashboards/474?URI={{ district.region._value }}&Region={{ district.region._value }}&District={{ district.district_name._value }}&Date={{ _filters['card.issued_yymmdd_year'] | url_encode }}"
+    }
   }
 
   dimension: just_prague {

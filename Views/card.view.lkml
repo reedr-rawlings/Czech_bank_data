@@ -17,6 +17,7 @@ view: card {
   dimension: issued {
     type: string
     sql: ${TABLE}.issued ;;
+    # html: <img src="https://img.icons8.com/plasticine/100/000000/long-arrow-up.png"> ;;
   }
 
   dimension_group: issued_yymmdd {
@@ -58,8 +59,8 @@ view: card {
     END;;
     html:
     <div class="vis">
-    <div class="vis-single-value" style="font-size:36px">
-    <i class="fa fa-credit-card">&nbsp;</i><font color="#5A2FC2"; font-size:200%><center><b>Card Type:</b>&nbsp; {{ rendered_value }} </font>
+    <div class="vis-single-value" style="font-size:12px">
+    <i class="fa fa-credit-card">&nbsp;</i><font color="#5A2FC2"; font-size:100%><center><b>Card Type:</b>&nbsp; {{ rendered_value }} </font>
     <p style="float:left; font-family: Times, serif;">
     </div>
     </div>;;
@@ -172,6 +173,6 @@ view: card {
 
   measure: count {
     type: count
-    drill_fields: [card_id]
+    drill_fields: [card_id, type_of_card, district.region, district.district_name]
   }
 }

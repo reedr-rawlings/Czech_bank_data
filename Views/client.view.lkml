@@ -60,7 +60,7 @@ view: client {
     <div class="vis-single-value" style="font-size:36px; background-image: linear-gradient(to left, #FFcF40, #ffffff); color:#000000">
     <font color="#5A2FC2"; font-size:200%><center><b>Clients with Credit Cards:</b>&nbsp; {{ linked_value }} </font>
 
-    <p style="color:#57595d;">{{ customers_with_cards._rendered_value  }} of All Customers Hold Credit Cards </p>
+    <p style="_user_attributes['climber_country']">{{ customers_with_cards._rendered_value  }} of All Customers Hold Credit Cards </p>
 
     <p style="float:left; font-family: Times, serif;">
     <i class="fa fa-minus-square">&nbsp;</i>Junior Cards {{ percent_junior_cards._linked_value }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
