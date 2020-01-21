@@ -1,9 +1,9 @@
 view: orders_dt {
    derived_table: {
-    datagroup_trigger: new_trigger
+    #datagroup_trigger: new_trigger
     sql: SELECT
     account.district_id  AS account_district_id,
-    orders.amount  AS orders_amount,
+    {% condition account_too %} orders.amount {% endcondition %} AS orders_amount,
     orders.account_id  AS orders_account_id,
     COUNT(DISTINCT orders.bank_to ) AS orders_total_banks
     FROM czech_financial_data.orders  AS orders
@@ -14,6 +14,10 @@ view: orders_dt {
     LIMIT 500;;
     }
 
+    dimension: account_too {
+      type: number
+      sql: ${TABLE}.orders_amount ;;
+    }
 
     dimension: account_dist_id {
       primary_key: yes
